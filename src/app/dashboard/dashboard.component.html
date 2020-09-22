@@ -1,0 +1,16 @@
+<app-chart [books]="books" *ngIf="init"></app-chart>
+<div class="row" *ngIf="init">
+  <div class="col-sm-12 col-md-6 col-lg-3 mt-4" *ngFor="let book of books; let i = index">
+    <div [routerLink]="['/book', book.ID]" class="card">
+      <div class="card-header">
+        <h5 class="card-title">{{ book.Title }}</h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{ book.Description }}</p>
+        <a class="btn btn-primary" (click)="toggleAuthors($event)">Автор</a>
+        <p class="card-text mt-4" *ngIf="areAuthorsVisible"><em>{{ getAuthors(i) }}</em></p>
+      </div>
+      <div class="card-footer text-muted">{{ format(book.PublishDate, 'dd.MM.yyyy') }}</div>
+    </div>
+  </div>
+</div>
